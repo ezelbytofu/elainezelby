@@ -16,6 +16,7 @@ Everything here is general purpose and portable. Company-specific work lives in 
 
 | Skill | What it does |
 | --- | --- |
+| [`linkedin-ads-campaigns`](skills/linkedin-ads-campaigns/) | Opinionated B2B LinkedIn Ads playbook: qualifying the offer, funnel design, Campaign Manager setup, creative rules, benchmarks, and the outreach layer that converts leads. Six reference docs loaded on demand. |
 | [`marketing-psychology-analyzer`](skills/marketing-psychology-analyzer/) | Audits marketing copy, ads, landing pages, and positioning against persuasion frameworks from Cialdini, Carnegie, Gladwell, and Schwartz. Returns a scorecard, an emotion map, and ranked recommendations. |
 
 ## Agents
