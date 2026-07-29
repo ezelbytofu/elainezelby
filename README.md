@@ -16,7 +16,7 @@ Everything here is general purpose and portable. Company-specific work lives in 
 
 | Skill | What it does |
 | --- | --- |
-| _nothing published yet_ | |
+| [`marketing-psychology-analyzer`](skills/marketing-psychology-analyzer/) | Audits marketing copy, ads, landing pages, and positioning against persuasion frameworks from Cialdini, Carnegie, Gladwell, and Schwartz. Returns a scorecard, an emotion map, and ranked recommendations. |
 
 ## Agents
 

@@ -7,7 +7,7 @@ skill's `SKILL.md` frontmatter, or CI will fail.
 
 | Skill | What it does |
 | --- | --- |
-| _nothing published yet_ | |
+| [`marketing-psychology-analyzer`](marketing-psychology-analyzer/) | Audits marketing copy, ads, landing pages, and positioning against persuasion frameworks from Cialdini, Carnegie, Gladwell, and Schwartz. Returns a scorecard, an emotion map, and ranked recommendations. |
 
 ## Adding one
 
