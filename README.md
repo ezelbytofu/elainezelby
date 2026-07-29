@@ -10,6 +10,7 @@ Everything here is general purpose and portable. Company-specific work lives in 
 | --- | --- |
 | [`skills/`](skills/) | Claude Code skills. Each is a folder containing a `SKILL.md` plus any supporting references or scripts. |
 | [`agents/`](agents/) | Subagent definitions. A single markdown file per agent, with YAML frontmatter. |
+| [`scheduled-tasks/`](scheduled-tasks/) | Jobs meant to run on a cron rather than be invoked by hand. Same folder-plus-`SKILL.md` shape as a skill, but installs to `~/.claude/scheduled-tasks/`. |
 | [`scripts/`](scripts/) | Repo tooling (frontmatter validation, etc). |
 
 ## Skills
@@ -24,6 +25,12 @@ Everything here is general purpose and portable. Company-specific work lives in 
 | Agent | What it does |
 | --- | --- |
 | _nothing published yet_ | |
+
+## Scheduled tasks
+
+| Task | What it does |
+| --- | --- |
+| [`ramp-receipt-submitter`](scheduled-tasks/ramp-receipt-submitter/) | Daily: finds open Ramp receipt requests in Gmail, pulls the matching vendor invoice, submits it as a hash-verified attachment, and archives only after Ramp confirms the match. |
 
 ## Installing
 

@@ -15,6 +15,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 SKILLS = ROOT / "skills"
 AGENTS = ROOT / "agents"
+TASKS = ROOT / "scheduled-tasks"
 
 # Minimum description length. Short descriptions cause skills to never trigger.
 MIN_DESCRIPTION = 40
@@ -34,8 +35,7 @@ SECRET_PATTERNS = [
 
 errors = []
 warnings = []
-skills_found = []
-agents_found = []
+found_by_kind = {}
 
 
 def split_frontmatter(text, path):
@@ -103,16 +103,18 @@ def check(path, expected_name, kind):
             errors.append(f"{rel}: '{field}' should list key names only, never values")
 
     if name and name != "_template":
-        (skills_found if kind == "skill" else agents_found).append((name, description))
+        found_by_kind.setdefault(kind, []).append((name, description))
 
 
-if SKILLS.is_dir():
-    for folder in sorted(p for p in SKILLS.iterdir() if p.is_dir()):
+for root, kind in ((SKILLS, "skill"), (TASKS, "scheduled task")):
+    if not root.is_dir():
+        continue
+    for folder in sorted(p for p in root.iterdir() if p.is_dir()):
         skill_file = folder / "SKILL.md"
         if not skill_file.is_file():
-            errors.append(f"skills/{folder.name}/: no SKILL.md found")
+            errors.append(f"{root.name}/{folder.name}/: no SKILL.md found")
             continue
-        check(skill_file, folder.name, "skill")
+        check(skill_file, folder.name, kind)
 
 if AGENTS.is_dir():
     for agent_file in sorted(AGENTS.glob("*.md")):
@@ -125,9 +127,12 @@ for warning in warnings:
 for error in errors:
     print(f"error: {error}")
 
+tally = ", ".join(
+    f"{len(found_by_kind.get(k, []))} {k}(s)" for k in ("skill", "agent", "scheduled task")
+)
 print(
-    f"\nChecked {len(skills_found)} skill(s) and {len(agents_found)} agent(s) "
-    f"(templates excluded): {len(errors)} error(s), {len(warnings)} warning(s)."
+    f"\nChecked {tally} (templates excluded): "
+    f"{len(errors)} error(s), {len(warnings)} warning(s)."
 )
 
 sys.exit(1 if errors else 0)
